@@ -66,61 +66,80 @@ const ExperienceSection = () => {
             </p>
           </div>
 
-          {/* Timeline */}
+          {/* Professional Timeline Chart */}
           <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-4 md:left-1/2 md:transform md:-translate-x-px top-0 bottom-0 w-px bg-border"></div>
+            {/* Main Timeline Spine */}
+            <div className="absolute left-4 sm:left-8 lg:left-1/2 lg:transform lg:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/60 to-primary/30"></div>
+            
+            {/* Timeline Gradient Glow */}
+            <div className="absolute left-4 sm:left-8 lg:left-1/2 lg:transform lg:-translate-x-1 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/20 via-primary/10 to-transparent blur-sm"></div>
 
             {experiences.map((exp, index) => (
-              <div key={index} className="relative mb-12 md:mb-16">
-                {/* Timeline Dot */}
-                <div className="absolute left-2 md:left-1/2 md:transform md:-translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-engineering z-10"></div>
+              <div key={index} className="relative mb-8 sm:mb-12 lg:mb-16">
+                {/* Professional Timeline Node */}
+                <div className="absolute left-2 sm:left-6 lg:left-1/2 lg:transform lg:-translate-x-1/2 z-20">
+                  {/* Outer Ring */}
+                  <div className="w-6 h-6 rounded-full bg-background border-2 border-primary shadow-glow flex items-center justify-center">
+                    {/* Inner Dot */}
+                    <div className={`w-3 h-3 rounded-full ${exp.current ? 'bg-engineering-safety animate-pulse' : 'bg-primary'}`}></div>
+                  </div>
+                  
+                  {/* Connection Line to Card */}
+                  <div className={`absolute top-3 w-8 sm:w-12 lg:w-16 h-0.5 bg-gradient-to-r ${index % 2 === 0 ? 'left-6 lg:left-6 from-primary/60 to-primary/20' : 'right-6 lg:right-6 from-primary/20 to-primary/60'}`}></div>
+                </div>
 
-                {/* Content Card */}
-                <div className={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:ml-auto md:pl-12'}`}>
-                  <Card className="bg-gradient-card border-border/50 hover:shadow-card-hover transition-all duration-300 group">
-                    <CardHeader className="pb-4">
-                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-                        <div>
-                          <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-200">
-                            {exp.title}
-                          </h3>
-                          <div className="flex items-center gap-2 text-muted-foreground mt-1">
-                            <Building2 className="w-4 h-4" />
-                            <span className="font-medium">{exp.company}</span>
+                {/* Content Card with Professional Styling */}
+                <div className={`ml-12 sm:ml-16 lg:ml-0 lg:w-1/2 ${index % 2 === 0 ? 'lg:pr-12' : 'lg:ml-auto lg:pl-12'}`}>
+                  <Card className="bg-gradient-card border-l-4 border-l-primary/30 hover:border-l-primary border-border/50 hover:shadow-elevated transition-all duration-300 group relative overflow-hidden">
+                    {/* Card Accent Line */}
+                    <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary via-primary/60 to-primary/30 group-hover:w-2 transition-all duration-300"></div>
+                    
+                    {/* Professional Badge */}
+                    <div className="absolute top-4 right-4 w-2 h-2 bg-primary/20 rounded-full group-hover:bg-primary/40 transition-colors duration-300"></div>
+                    <CardHeader className="p-4 sm:p-6">
+                      <div className="flex flex-col gap-3">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                          <div className="flex-1">
+                            <h3 className="text-lg sm:text-xl lg:text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-200 leading-tight">
+                              {exp.title}
+                            </h3>
+                            <div className="flex items-center gap-2 text-muted-foreground mt-1">
+                              <Building2 className="w-4 h-4 flex-shrink-0" />
+                              <span className="font-medium text-sm sm:text-base">{exp.company}</span>
+                            </div>
                           </div>
+                          {exp.current && (
+                            <Badge variant="secondary" className="bg-engineering-blue/10 text-engineering-blue border-engineering-blue/20 text-xs self-start">
+                              Current
+                            </Badge>
+                          )}
                         </div>
-                        {exp.current && (
-                          <Badge variant="secondary" className="bg-engineering-blue/10 text-engineering-blue border-engineering-blue/20">
-                            Current
-                          </Badge>
-                        )}
-                      </div>
-                      
-                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <CalendarDays className="w-4 h-4" />
-                          <span>{exp.period}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          <span>{exp.location}</span>
+                        
+                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-2">
+                            <CalendarDays className="w-4 h-4 flex-shrink-0" />
+                            <span>{exp.period}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4 flex-shrink-0" />
+                            <span>{exp.location}</span>
+                          </div>
                         </div>
                       </div>
                     </CardHeader>
 
-                    <CardContent className="pt-0">
-                      <p className="text-muted-foreground mb-4 leading-relaxed">
+                    <CardContent className="p-4 sm:p-6 pt-0">
+                      <p className="text-muted-foreground mb-4 leading-relaxed text-sm sm:text-base">
                         {exp.description}
                       </p>
                       
                       <div>
-                        <h4 className="font-semibold text-foreground mb-2">Key Responsibilities:</h4>
-                        <ul className="space-y-1">
+                        <h4 className="font-semibold text-foreground mb-3 text-sm sm:text-base">Key Responsibilities:</h4>
+                        <ul className="space-y-2">
                           {exp.responsibilities.map((resp, respIndex) => (
-                            <li key={respIndex} className="text-sm text-muted-foreground flex items-start gap-2">
+                            <li key={respIndex} className="text-sm text-muted-foreground flex items-start gap-3">
                               <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                              <span>{resp}</span>
+                              <span className="leading-relaxed">{resp}</span>
                             </li>
                           ))}
                         </ul>
