@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Download, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import cvFile from '@/assets/Aryan_Faizi_Resume.pdf';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,7 +46,12 @@ const Navigation = () => {
   };
 
   const handleDownloadCV = () => {
-    console.log('CV download requested');
+    const link = document.createElement('a');
+    link.href = cvFile;
+    link.download = 'Aryan_Faizi_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (

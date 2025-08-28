@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Mail, Phone, MapPin, Download, Linkedin, Github } from 'lucide-react';
+import cvFile from '@/assets/Aryan_Faizi_Resume.pdf';
 
 const ContactSection = () => {
   const contactInfo = [
@@ -28,9 +29,12 @@ const ContactSection = () => {
   ];
 
   const handleDownloadCV = () => {
-    // Placeholder for CV download functionality
-    console.log('Download CV clicked');
-    // In a real application, this would trigger a file download
+    const link = document.createElement('a');
+    link.href = cvFile;
+    link.download = 'Aryan_Faizi_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -146,8 +150,7 @@ const ContactSection = () => {
                     
                     <Button 
                       size="lg"
-                      variant="outline"
-                      className="w-full border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+                      className="w-full bg-primary-foreground/20 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary backdrop-blur-sm"
                       onClick={handleDownloadCV}
                     >
                       <Download className="w-5 h-5 mr-2" />

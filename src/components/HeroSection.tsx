@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, Mail, Phone, MapPin, Calendar, ChevronRight } from 'lucide-react';
+import { ArrowDown, Mail, Phone, MapPin, Calendar, ChevronRight, Download } from 'lucide-react';
 import heroImage from '@/assets/hero-engineering.jpg';
+import cvFile from '@/assets/Aryan_Faizi_Resume.pdf';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,6 +13,15 @@ const HeroSection = () => {
 
   const scrollToAbout = () => {
     document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = cvFile;
+    link.download = 'Aryan_Faizi_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const stats = [
@@ -111,10 +121,10 @@ const HeroSection = () => {
               <Button 
                 size="lg" 
                 className="group bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-elevated w-full lg:w-auto"
-                onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={handleDownloadCV}
               >
-                <Mail className="w-5 h-5 mr-2" />
-                Get In Touch
+                <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+                Download CV
                 <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
               
