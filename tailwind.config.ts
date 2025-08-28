@@ -79,7 +79,9 @@ export default {
 			boxShadow: {
 				'engineering': 'var(--shadow-engineering)',
 				'card-hover': 'var(--shadow-card)',
-				'elevated': 'var(--shadow-elevated)'
+				'elevated': 'var(--shadow-elevated)',
+				'glow': 'var(--shadow-glow)',
+				'soft': 'var(--shadow-soft)'
 			},
 			fontFamily: {
 				'engineering': ['Inter', 'system-ui', 'sans-serif']
