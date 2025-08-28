@@ -61,7 +61,28 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Engineering-specific colors
+				engineering: {
+					blue: 'hsl(var(--engineering-blue))',
+					steel: 'hsl(var(--steel-gray))',
+					concrete: 'hsl(var(--concrete-light))',
+					blueprint: 'hsl(var(--blueprint-blue))',
+					safety: 'hsl(var(--safety-orange))'
 				}
+			},
+			backgroundImage: {
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-card': 'var(--gradient-card)', 
+				'gradient-section': 'var(--gradient-section)'
+			},
+			boxShadow: {
+				'engineering': 'var(--shadow-engineering)',
+				'card-hover': 'var(--shadow-card)',
+				'elevated': 'var(--shadow-elevated)'
+			},
+			fontFamily: {
+				'engineering': ['Inter', 'system-ui', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
