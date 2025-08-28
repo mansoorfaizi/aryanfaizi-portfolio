@@ -1,12 +1,11 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
 import { 
   Hammer, 
-  Droplets, 
   ClipboardCheck, 
   Calendar, 
-  Calculator, 
-  Settings 
+  Settings,
+  CheckCircle,
+  Award
 } from 'lucide-react';
 
 const SkillsSection = () => {
@@ -16,10 +15,10 @@ const SkillsSection = () => {
       icon: Hammer,
       color: 'engineering-blue',
       skills: [
-        { name: 'Civil & Structural Engineering', level: 95 },
-        { name: 'Water & Wastewater Infrastructure', level: 90 },
-        { name: 'Site Management & Coordination', level: 88 },
-        { name: 'Construction Materials & Methods', level: 85 }
+        'Civil & Structural Engineering',
+        'Water & Wastewater Infrastructure', 
+        'Site Management & Coordination',
+        'Construction Materials & Methods'
       ]
     },
     {
@@ -27,10 +26,10 @@ const SkillsSection = () => {
       icon: ClipboardCheck,
       color: 'steel',
       skills: [
-        { name: 'Quality Control & Testing', level: 92 },
-        { name: 'Safety Compliance & Management', level: 90 },
-        { name: 'Regulatory Standards & Codes', level: 87 },
-        { name: 'Risk Assessment & Mitigation', level: 85 }
+        'Quality Control & Testing',
+        'Safety Compliance & Management',
+        'Regulatory Standards & Codes',
+        'Risk Assessment & Mitigation'
       ]
     },
     {
@@ -38,10 +37,10 @@ const SkillsSection = () => {
       icon: Calendar,
       color: 'blueprint',
       skills: [
-        { name: 'Project Planning & Monitoring', level: 88 },
-        { name: 'Stakeholder Management', level: 85 },
-        { name: 'Team Leadership & Coordination', level: 83 },
-        { name: 'Documentation & Reporting', level: 90 }
+        'Project Planning & Monitoring',
+        'Stakeholder Management',
+        'Team Leadership & Coordination',
+        'Documentation & Reporting'
       ]
     },
     {
@@ -49,10 +48,10 @@ const SkillsSection = () => {
       icon: Settings,
       color: 'safety',
       skills: [
-        { name: 'AutoCAD', level: 85 },
-        { name: 'Cost Estimation & Analysis', level: 80 },
-        { name: 'Technical Drawing Interpretation', level: 88 },
-        { name: 'Engineering Software', level: 75 }
+        'AutoCAD',
+        'Cost Estimation & Analysis',
+        'Technical Drawing Interpretation',
+        'Engineering Software'
       ]
     }
   ];
@@ -88,7 +87,7 @@ const SkillsSection = () => {
             </h2>
             <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Comprehensive skill set spanning technical engineering, project management, and quality assurance
+              Professional expertise across technical engineering, project management, and quality assurance disciplines
             </p>
           </div>
 
@@ -108,22 +107,14 @@ const SkillsSection = () => {
                 </CardHeader>
 
                 <CardContent className="pt-0">
-                  <div className="space-y-6">
+                  <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill, skillIndex) => (
-                      <div key={skillIndex}>
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="font-medium text-foreground text-sm">
-                            {skill.name}
-                          </span>
-                          <span className="text-sm text-muted-foreground">
-                            {skill.level}%
-                          </span>
-                        </div>
-                        <Progress 
-                          value={skill.level} 
-                          className="h-2"
-                        />
-                      </div>
+                      <span 
+                        key={skillIndex} 
+                        className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 hover:scale-105 ${getBgColor(category.color)} ${getIconColor(category.color)} border-current/20 hover:shadow-soft`}
+                      >
+                        {skill}
+                      </span>
                     ))}
                   </div>
                 </CardContent>
@@ -131,16 +122,22 @@ const SkillsSection = () => {
             ))}
           </div>
 
-          {/* Additional Skills */}
+          {/* Core Competencies */}
           <div className="mt-16">
-            <Card className="bg-gradient-card border-border/50 shadow-card-hover">
-              <CardHeader>
-                <h3 className="text-xl font-bold text-foreground text-center">
-                  Core Competencies
-                </h3>
+            <Card className="bg-gradient-hero text-primary-foreground border-0 shadow-elevated">
+              <CardHeader className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Award className="w-6 h-6" />
+                  <h3 className="text-xl font-bold">
+                    Core Competencies
+                  </h3>
+                </div>
+                <p className="text-primary-foreground/80 text-sm">
+                  Key areas of professional expertise and specialization
+                </p>
               </CardHeader>
               <CardContent>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="flex flex-wrap gap-2 justify-center">
                   {[
                     'Infrastructure Development',
                     'Construction Supervision',
@@ -152,10 +149,12 @@ const SkillsSection = () => {
                     'Stakeholder Communication',
                     'Problem Solving'
                   ].map((competency, index) => (
-                    <div key={index} className="flex items-center gap-2 p-3 rounded-lg bg-secondary/30 hover:bg-secondary/50 transition-colors duration-200">
-                      <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                      <span className="text-sm font-medium text-foreground">{competency}</span>
-                    </div>
+                    <span 
+                      key={index} 
+                      className="px-4 py-2 rounded-full text-sm font-medium bg-primary-foreground/20 text-primary-foreground border border-primary-foreground/30 hover:bg-primary-foreground/30 transition-all duration-200 hover:scale-105 backdrop-blur-sm"
+                    >
+                      {competency}
+                    </span>
                   ))}
                 </div>
               </CardContent>
